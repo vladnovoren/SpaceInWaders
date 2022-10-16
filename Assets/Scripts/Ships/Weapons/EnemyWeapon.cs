@@ -35,5 +35,5 @@ public class EnemyWeapon : BaseWeapon
     }
 
     private float currDeltaTime = 0f;
-    private float timeBtwShoots = 1f;
+    private float timeBtwShoots = 0.3f;
 }
