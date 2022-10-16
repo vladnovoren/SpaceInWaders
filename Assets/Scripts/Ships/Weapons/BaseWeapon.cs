@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour
 {
-    public Transform firePoint;
-    public Bullet bullet;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,4 +18,7 @@ public class BaseWeapon : MonoBehaviour
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
     }
+    
+    [SerializeField] protected Transform firePoint;
+    [SerializeField] protected Bullet bullet;
 }

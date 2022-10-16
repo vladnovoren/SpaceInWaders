@@ -20,9 +20,18 @@ public class PlayerShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TryRun();
+    }
+
+    bool TryRun()
+    {
         if (IsRun())
+        {
             Run();
-        Shoot();
+            return true;
+        }
+
+        return false;
     }
 
     bool IsRun()
@@ -35,11 +44,8 @@ public class PlayerShip : MonoBehaviour
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         myRigitBody.MovePosition(myRigitBody.position + moveInput * moveSpeed);        
     }
-
-    void Shoot()
-    {
-    }
     
+
     private float moveSpeed = 0.05f;
     private Rigidbody2D myRigitBody;
 }
