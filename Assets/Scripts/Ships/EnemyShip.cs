@@ -7,8 +7,8 @@ public class EnemyShip : MonoBehaviour
 {
     private void Awake()
     {
-        myRigitBody = GetComponent<Rigidbody2D>();
-        startPosition = transform.position;
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _startPosition = transform.position;
     }
 
     // Start is called before the first frame update
@@ -20,14 +20,14 @@ public class EnemyShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myRigitBody.MovePosition(startPosition +
-                                 Vector2.right * amplitude *
-                                 moveSpeed * (float)Math.Sin(Time.realtimeSinceStartup)
+        _rigidBody.MovePosition(_startPosition +
+                                 _amplitude * _moveSpeed *
+                                 (float)Math.Sin(Time.realtimeSinceStartup) * Vector2.right 
                                  );
     }
     
-    private Rigidbody2D myRigitBody;
-    private Vector2 startPosition;
-    private float moveSpeed = 1f;
-    private float amplitude = 1f;
+    private Rigidbody2D _rigidBody;
+    private Vector2 _startPosition;
+    private readonly float _moveSpeed = 1f;
+    private readonly float _amplitude = 1f;
 }

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = System.Object;
 
 public class EnemyWeapon : BaseWeapon
 {
@@ -17,7 +19,7 @@ public class EnemyWeapon : BaseWeapon
 
     void TryShoot()
     {
-        if (CheckTime())
+        if (CheckTime() && !CheckFriendlyFire())
         {
             Shoot();
         }
@@ -25,15 +27,21 @@ public class EnemyWeapon : BaseWeapon
 
     bool CheckTime()
     {
-        currDeltaTime += Time.deltaTime;
-        if (currDeltaTime >= timeBtwShoots)
-        {
-            currDeltaTime -= timeBtwShoots;
+        _currDeltaTime += Time.deltaTime;
+        if (_currDeltaTime < _reloadTime)
+            return false;
+        _currDeltaTime -= _reloadTime;
+        return true;
+    }
+
+    bool CheckFriendlyFire()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.transform.position, transform.up); 
+        if (hit.collider != null && hit.collider.gameObject.GetComponent<EnemyShipTag>() != null)
             return true;
-        }
         return false;
     }
 
-    private float currDeltaTime = 0f;
-    private float timeBtwShoots = 0.3f;
+    private float _currDeltaTime = 0f;
+    private readonly float _reloadTime = 1.0f;
 }

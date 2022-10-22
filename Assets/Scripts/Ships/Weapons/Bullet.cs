@@ -8,21 +8,22 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigit_body_ = GetComponent<Rigidbody2D>();
-        rigit_body_.velocity = transform.up * speed_;
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _rigidBody.velocity = transform.up * _speed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Health other_health = other.GetComponent<Health>();
-        if (other_health != null)
+        Health otherHealth = other.GetComponent<Health>();
+        if (otherHealth != null)
         {
-            other_health.TakeDamage(damage_);
+            otherHealth.TakeDamage(_damage);
         }
         Destroy(gameObject);
     }
 
-    private float speed_ = 20.0f;
-    private Rigidbody2D rigit_body_;
-    private int damage_ = 34;
+    private readonly float _speed = 1.0f;
+    private readonly int _damage = 34;
+
+    private Rigidbody2D _rigidBody;
 }
