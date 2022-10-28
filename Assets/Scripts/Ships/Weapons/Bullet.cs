@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ObjectsManaging;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -12,9 +13,9 @@ public class Bullet : MonoBehaviour
         _rigidBody.velocity = transform.up * Speed;
     }
 
-    public void SetOwner(GameObject owner)
+    public void SetOwner(GameRoles.Roles ownerRole)
     {
-        _owner = owner;
+        _ownerRole = ownerRole;
     }
 
     public int CreatureDamage { get; } = 34;
@@ -52,7 +53,8 @@ public class Bullet : MonoBehaviour
 
     private void CollideHealthImpl(Health health)
     {
-        health.TakeDamage(CreatureDamage);
+        if (GameRoles.AreEnemies(_ownerRole, health.gameObject))
+            health.TakeDamage(CreatureDamage);
     }
 
     // Collisions with trips
@@ -71,5 +73,5 @@ public class Bullet : MonoBehaviour
     }
 
     private Rigidbody2D _rigidBody;
-    private GameObject _owner;
+    private GameRoles.Roles _ownerRole;
 }
