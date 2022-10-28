@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour
 {
+    [SerializeField] protected Transform firePoint;
+    [SerializeField] protected Bullet bullet;
+
+    public BaseWeapon()
+    {
+    }
+ 
+    public BaseWeapon(float reloadTime)
+    {
+        _reloadTime = reloadTime;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -12,13 +23,23 @@ public class BaseWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 
     protected void Shoot()
     {
-        Instantiate(bullet, firePoint.position, firePoint.rotation);
+        if (CheckReloadTime())
+        {
+            _lastShootTime = Time.time;
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+        }
     }
     
-    [SerializeField] protected Transform firePoint;
-    [SerializeField] protected Bullet bullet;
+    private bool CheckReloadTime()
+    {
+        return !(Time.time - _lastShootTime < _reloadTime);
+    }
+
+    private readonly float _reloadTime = 1.0f;
+    private float _lastShootTime = 0.0f;
 }

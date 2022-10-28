@@ -9,21 +9,24 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
-        _rigidBody.velocity = transform.up * _speed;
+        _rigidBody.velocity = transform.up * Speed;
     }
+
+    public void SetOwner(GameObject owner)
+    {
+        _owner = owner;
+    }
+
+    public int CreatureDamage { get; } = 34;
+
+    public float TripDamage { get; } = 0.5f;
+    public float Speed { get; } = 1.0f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Health otherHealth = other.GetComponent<Health>();
-        if (otherHealth != null)
-        {
-            otherHealth.TakeDamage(_damage);
-        }
-        Destroy(gameObject);
+        CollisionManager.ResponseBullet(gameObject, other.gameObject);
     }
 
-    private readonly float _speed = 1.0f;
-    private readonly int _damage = 34;
-
     private Rigidbody2D _rigidBody;
+    private GameObject _owner;
 }

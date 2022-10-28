@@ -19,19 +19,10 @@ public class EnemyWeapon : BaseWeapon
 
     void TryShoot()
     {
-        if (CheckTime() && !CheckFriendlyFire())
+        if (!CheckFriendlyFire())
         {
             Shoot();
         }
-    }
-
-    bool CheckTime()
-    {
-        _currDeltaTime += Time.deltaTime;
-        if (_currDeltaTime < _reloadTime)
-            return false;
-        _currDeltaTime -= _reloadTime;
-        return true;
     }
 
     bool CheckFriendlyFire()
@@ -41,7 +32,4 @@ public class EnemyWeapon : BaseWeapon
             return true;
         return false;
     }
-
-    private float _currDeltaTime = 0f;
-    private readonly float _reloadTime = 1.0f;
 }

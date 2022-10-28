@@ -2,26 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Trip : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
+        _scale = gameObject.transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     }
 
-    public void TakeDamage(int damage)
+    public void MulScale(float mul)
     {
-        _health -= damage;
-        if (_health < 0)
+        _scale *= mul;
+        if (_scale.magnitude < _dieScale)
         {
             Destroy(gameObject);
         }
     }
 
-    private int _health = 100;
+    private readonly float _dieScale = 1.0f / (1 << 3);
+    private Vector3 _scale;
 }
