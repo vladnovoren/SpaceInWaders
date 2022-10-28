@@ -40,6 +40,6 @@ public class BaseWeapon : MonoBehaviour
         return !(Time.time - _lastShootTime < _reloadTime);
     }
 
-    private readonly float _reloadTime = 1.0f;
-    private float _lastShootTime = 0.0f;
+    protected float _reloadTime = 1.0f;
+    protected float _lastShootTime = 0.0f;
 }

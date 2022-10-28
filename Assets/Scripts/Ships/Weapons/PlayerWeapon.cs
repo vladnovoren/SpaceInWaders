@@ -7,6 +7,7 @@ public class PlayerWeapon : BaseWeapon
     // Start is called before the first frame update
     void Start()
     {
+        _reloadTime = 0.5f;
     }
 
     // Update is called once per frame

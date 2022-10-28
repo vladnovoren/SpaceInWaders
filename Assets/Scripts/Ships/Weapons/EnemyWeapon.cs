@@ -9,15 +9,15 @@ public class EnemyWeapon : BaseWeapon
     // Start is called before the first frame update
     void Start()
     {
+        _reloadTime = 3f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        TryShoot();
     }
 
-    void TryShoot()
+    public void TryShoot()
     {
         if (!CheckFriendlyFire())
         {

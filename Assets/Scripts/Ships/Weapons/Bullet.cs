@@ -59,10 +59,8 @@ public class Bullet : MonoBehaviour
     private bool TryCollideTrip(GameObject other)
     {
         Trip trip = other.GetComponent<Trip>();
-        if (trip == null) {
-            Debug.Log("trip null");
+        if (trip == null)
             return false;
-        }
         CollideTripImpl(trip);
         return true;
     }
