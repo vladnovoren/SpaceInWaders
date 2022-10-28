@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8318267425556879595}
   - component: {fileID: 6293408468139066605}
+  - component: {fileID: 1148666117724046920}
   m_Layer: 0
   m_Name: Trip
   m_TagString: Untagged
@@ -130,7 +131,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0018689632, y: -0.00000011920929}
+  m_Offset: {x: -0.011305571, y: 0.017566144}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -141,5 +142,17 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.50328016, y: 0.5096538}
+  m_Size: {x: 1.8119607, y: 1.8446835}
   m_EdgeRadius: 0
+--- !u!114 &1148666117724046920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3096020840953847545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f282819fa89f054996ee351acfe3cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

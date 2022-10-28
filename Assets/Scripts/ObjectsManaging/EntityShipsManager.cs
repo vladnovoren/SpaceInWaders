@@ -58,8 +58,8 @@ public class EntityShipsManager : MonoBehaviour
     }
 
     private readonly EnemySpawnConfig _spawnConfig = new EnemySpawnConfig(
-        new Vector2(-3, -1), new Vector2(1.5f, 1.5f),
-        4, 5);
+        new Vector2(-3, 1), new Vector2(1.5f, 1.5f),
+        3, 5);
 
     [SerializeField] protected EnemyShip _enemyShip;
 }

@@ -7,24 +7,19 @@ public class Trip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _scale = gameObject.transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
-
-    public void MulScale(float mul)
+    
+    public void TakeDamage(float damage)
     {
-        _scale *= mul;
-        if (_scale.magnitude < _dieScale)
-        {
+        gameObject.transform.localScale -= Vector3.one * damage;
+        if (gameObject.transform.localScale.magnitude < _dieScale)
             Destroy(gameObject);
-        }
     }
 
-    private readonly float _dieScale = 1.0f / (1 << 3);
-    private Vector3 _scale;
+    private readonly float _dieScale = 0.25f;
 }
