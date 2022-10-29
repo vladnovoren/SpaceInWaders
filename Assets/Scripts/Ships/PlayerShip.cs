@@ -14,7 +14,6 @@ public class PlayerShip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -23,28 +22,34 @@ public class PlayerShip : MonoBehaviour
         TryRun();
     }
 
-    bool TryRun()
+    public void OnKill()
+    {
+        ++Scores;
+    }
+
+    private bool TryRun()
     {
         if (IsRun())
         {
-            Run();
+            RunImpl();
             return true;
         }
 
         return false;
     }
 
-    bool IsRun()
+    private bool IsRun()
     {
         return Input.GetButton("Horizontal") || Input.GetButton("Vertical");
     }
 
-    void Run()
+    private void RunImpl()
     {
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         myRigitBody.MovePosition(myRigitBody.position + moveInput * moveSpeed);        
     }
-    
+
+    public int Scores { get; private set; } = 0;
 
     private float moveSpeed = 0.05f;
     private Rigidbody2D myRigitBody;

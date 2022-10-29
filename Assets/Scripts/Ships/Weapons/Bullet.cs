@@ -13,12 +13,17 @@ public class Bullet : MonoBehaviour
         _rigidBody.velocity = transform.up * Speed;
     }
 
-    public void SetOwner(GameRoles.Roles ownerRole)
+    public void SetOwnerRole(GameRoles.Roles ownerRole)
     {
         _ownerRole = ownerRole;
     }
 
-    public int CreatureDamage { get; } = 34;
+    public void SetOwnerWeapon(BaseWeapon weapon)
+    {
+        _weapon = weapon;
+    }
+
+    public int CreatureDamage { get; } = 1;
     public float TripDamage { get; } = 0.1f;
     public float Speed { get; } = 1.0f;
 
@@ -54,7 +59,12 @@ public class Bullet : MonoBehaviour
     private void CollideHealthImpl(Health health)
     {
         if (GameRoles.AreEnemies(_ownerRole, health.gameObject))
-            health.TakeDamage(CreatureDamage);
+        {
+            if (health.TakeDamage(CreatureDamage))
+            {
+                _weapon.OnKill();
+            }
+        }
     }
 
     // Collisions with trips
@@ -74,4 +84,5 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody2D _rigidBody;
     private GameRoles.Roles _ownerRole;
+    private BaseWeapon _weapon;
 }

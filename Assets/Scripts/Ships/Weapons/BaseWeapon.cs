@@ -2,19 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseWeapon : MonoBehaviour
+public abstract class BaseWeapon : MonoBehaviour
 {
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected Bullet bullet;
-
-    public BaseWeapon()
-    {
-    }
- 
-    public BaseWeapon(float reloadTime)
-    {
-        _reloadTime = reloadTime;
-    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,21 +17,27 @@ public class BaseWeapon : MonoBehaviour
     {
         
     }
+    
+    public abstract void OnKill();
 
-    protected void Shoot()
+    protected Bullet Shoot()
     {
         if (CheckReloadTime())
         {
             _lastShootTime = Time.time;
-            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            var spawnedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            spawnedBullet.SetOwnerWeapon(this);
+            return spawnedBullet;
         }
+
+        return null;
     }
     
     private bool CheckReloadTime()
     {
         return !(Time.time - _lastShootTime < _reloadTime);
     }
-
+    
     protected float _reloadTime = 1.0f;
     protected float _lastShootTime = 0.0f;
 }

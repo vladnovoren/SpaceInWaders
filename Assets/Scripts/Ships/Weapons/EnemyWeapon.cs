@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ObjectsManaging;
 using UnityEngine;
 using Object = System.Object;
 
@@ -17,12 +18,16 @@ public class EnemyWeapon : BaseWeapon
     {
     }
 
+    public override void OnKill()
+    {
+    }
+    
     public void TryShoot()
     {
-        if (!CheckFriendlyFire())
-        {
-            Shoot();
-        }
+        if (CheckFriendlyFire()) return;
+        var spawnedBullet = Shoot();
+        if (spawnedBullet != null)
+            spawnedBullet.SetOwnerRole(GameRoles.Roles.Enemy);
     }
 
     bool CheckFriendlyFire()

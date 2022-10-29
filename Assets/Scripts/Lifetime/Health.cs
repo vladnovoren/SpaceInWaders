@@ -14,14 +14,17 @@ public class Health : MonoBehaviour
     {
     }
 
-    public void TakeDamage(int damage)
+    public int Value { get; private set; } = 3;
+
+    public bool TakeDamage(int damage)
     {
-        _health -= damage;
-        if (_health < 0)
+        Value -= damage;
+        if (Value <= 0)
         {
             Destroy(gameObject);
+            return true;
         }
-    }
 
-    private int _health = 100;
+        return false;
+    }
 }
