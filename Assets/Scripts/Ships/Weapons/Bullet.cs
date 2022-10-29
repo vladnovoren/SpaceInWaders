@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
 
     public int CreatureDamage { get; } = 1;
     public float TripDamage { get; } = 0.1f;
-    public float Speed { get; } = 1.0f;
+    public float Speed { get; } = 5.0f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

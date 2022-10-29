@@ -14,6 +14,11 @@ public class Health : MonoBehaviour
     {
     }
 
+    public void AddBonus()
+    {
+        ++Value;
+    }
+
     public int Value { get; private set; } = 3;
 
     public bool TakeDamage(int damage)
